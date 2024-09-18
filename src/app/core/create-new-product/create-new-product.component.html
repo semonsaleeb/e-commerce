@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<p-card class="addNewForm">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+
+      <div class="flex flex-column gap-2">
+        <label for="title" class="label">Title:</label>
+        <input
+          pInputText
+          class="p-inputtext p-component"
+          id="title"
+          formControlName="title"
+          aria-describedby="title-help"
+          #title
+        />
+        
+        <p-message *ngIf="productForm.get('title')?.errors?.['required'] && productForm.get('title')?.touched" severity="error" text="Title is required."></p-message>
+        <p-message *ngIf="productForm.get('title')?.errors?.['minlength']" severity="error" text="Title is more than 10 letters."></p-message>
+
+      </div>
+      
+
+      <div class="flex flex-column gap-2">
+        <label for="category" class="label">Category:</label>
+        <input
+          pInputText
+          class="p-inputtext p-component"
+          id="category"
+          formControlName="category"
+          aria-describedby="category-help"
+        />
+      
+        <p-message *ngIf="productForm.get('category')?.errors?.['required'] && productForm.get('category')?.touched" severity="error" text="category is required."></p-message>
+
+      </div>
+      
+
+      <div class="flex flex-column gap-2">
+        <label for="float-input" class="label">Description:</label>
+        <textarea
+          id="Description"
+          class="p-inputtextarea p-component"
+          formControlName="description"
+          rows="3"
+          cols="30"
+          pInputTextarea
+        ></textarea>
+        <p-message *ngIf="productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched" severity="error" text="description is required."></p-message>
+        <p-message *ngIf="productForm.get('description')?.errors?.['maxlength']" severity="error" text="description is more than 100 letters."></p-message>
+
+      </div>
+
+      
+      <div class="flex flex-column gap-2">
+        <label for="float-input" class="label">price :</label>
+        <p-inputNumber
+        id="price"
+        formControlName="price"
+        mode="currency"
+        currency="USD"
+        locale="en-US"
+      ></p-inputNumber>
+      </div>
+
+      <div class="flex flex-column gap-2">
+        <button pButton label="Add Product" [disabled]="!productForm.valid" type="submit" class="p-button-primary"></button>
+        </div>
+    </div>
+  </form>
+</p-card>  

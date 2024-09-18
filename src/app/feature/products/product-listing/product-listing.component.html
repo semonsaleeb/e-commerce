@@ -1,0 +1,17 @@
+<div class="grid">
+    <div class="col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        @for (product of products; track product.id) {
+
+        <div class="text-center p-3 border-round-sm bg-primary font-bold">
+
+                <app-card [product]="product" (productDelete)="onProductDelete($event)" (productSelected)="onProductEdit($event)"></app-card>
+                
+                
+
+        </div>
+    }
+
+    </div>
+    
+</div>
+
