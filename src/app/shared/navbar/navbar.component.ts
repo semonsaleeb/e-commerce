@@ -9,6 +9,7 @@ import { RippleModule } from 'primeng/ripple';
 import {ToolbarModule} from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/service/login.service';
 
 
 
@@ -23,6 +24,9 @@ export class NavbarComponent {
     public router =inject(Router);
     items: MenuItem[] | undefined;
 
+    constructor(public auth: LoginService){
+
+    }
 
   ngOnInit() {
       this.items = [
@@ -32,16 +36,21 @@ export class NavbarComponent {
               route: '/products',
           },
           {
-              label: 'Features',
-              icon: 'pi pi-star'
+              label: 'Users',
+              icon: 'pi pi-star',
+              route: '/users',
+
           },
       ];
   }
 
-  onNewClick(){
-    this.router.navigate(['products/addNew']);
+  onLogout() {
+    this.auth.logout();
+    
+console.log("log out done");
 
 }
+
 navigateTo(route: string) {
     this.router.navigate([route]);
   }

@@ -17,6 +17,19 @@
     <input  pInputText class="p-inputtext p-component"  id="Category" formControlName="Category"  aria-describedby="username-help"  />
 </div>
 
+<!-- <div class="flex flex-column gap-2">
+    <label for="category" class="label">Category:</label>
+    <p-dropdown 
+      [options]="categories" 
+      formControlName="category" 
+      optionLabel="name" 
+      optionValue="id"
+      placeholder="Select a Category" 
+      id="category"
+      aria-describedby="category-help">
+    </p-dropdown>
+  </div> -->
+
 <div class="flex flex-column gap-2">
     <label for="float-input" class="label">Description:</label>
     <textarea id="Description" class="p-inputtextarea p-component" formControlName="Description" rows="3" cols="30" pInputTextarea ></textarea>

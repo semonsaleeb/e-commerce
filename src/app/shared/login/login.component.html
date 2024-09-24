@@ -1,0 +1,33 @@
+<div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+        <div class="p-field">
+            <h1>Login</h1>
+        </div>
+      
+        <div class="p-field">
+        <label for="username">username : </label><br>
+        <input id="username" pInputText formControlName="username" type="text" placeholder="Enter your username" />
+      
+        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
+            <small *ngIf="loginForm.get('username')?.errors?.['required']">Username is required.</small>
+          </div>
+    </div>
+  
+      
+
+      <div class="p-field">
+        <label for="password">Password :&nbsp;</label>
+        <p-password id="password" formControlName="password" [toggleMask]="true" placeholder="Enter your password"></p-password>
+
+      <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+      </div>
+    </div>
+
+      <div class="btnContainer" >
+        <button pButton pRipple label="Login" class="p-button-primary" type="submit" [disabled]="loginForm.invalid"></button>
+      </div>
+    </form>
+  </div>
+  

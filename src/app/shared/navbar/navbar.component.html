@@ -1,31 +1,66 @@
 <p-menubar [model]="items">
-  
-    
-    <ng-template pTemplate="item" let-item let-root="root">
-        <a pRipple class="flex align-items-center p-menuitem-link" (click)="navigateTo(item.route)">
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-            <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
-            <span *ngIf="item.shortcut" class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{{ item.shortcut }}</span>
-            <i *ngIf="item.items" [ngClass]="['pi', root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto']"></i>
-        </a>
-    </ng-template>
-    
+  <ng-template pTemplate="item" let-item let-root="root">
+    <a
+      pRipple
+      class="flex align-items-center p-menuitem-link"
+      (click)="navigateTo(item.route)"
+    >
+      <span [class]="item.icon"></span>
+      <span class="ml-2">{{ item.label }}</span>
+      <p-badge
+        *ngIf="item.badge"
+        [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
+        [value]="item.badge"
+      />
+      <span
+        *ngIf="item.shortcut"
+        class="ml-auto border-1 surface-border border-round surface-100 text-xs p-1"
+        >{{ item.shortcut }}</span
+      >
+      <i
+        *ngIf="item.items"
+        [ngClass]="[
+          'pi',
+          root ? 'pi-angle-down ml-2' : 'pi-angle-right ml-auto'
+        ]"
+      ></i>
+    </a>
+  </ng-template>
 
+  <ng-template pTemplate="end">
+    <div class="flex align-items-center gap-2">
+      <button
+        pButton
+        pRipple
+        label="Add new Product"
+        class="p-button-success"
+        id="add"
+        [routerLink]="['/products/addNew']"
+      ></button>
 
-    <ng-template pTemplate="end">
-        <div class="flex align-items-center gap-2">
-            <button 
-            pButton 
-            pRipple 
-            label="Add new" 
-            class="p-button-success"
-            id="add"
-            (click)="onNewClick()"
-            >
-            
-        </button>
-        </div>
-    </ng-template>
+     <!-- Login Button (Shown when the user is NOT logged in) -->
+<button
+*ngIf="!(auth.isLoggedIn$ | async)"
+pButton
+pRipple
+label="Login"
+class="p-button-primary"
+id="login"
+[routerLink]="['/login']"
+></button>
+
+<!-- Logout Button (Shown when the user IS logged in) -->
+<button
+*ngIf="auth.isLoggedIn$ | async"
+pButton
+pRipple
+label="Logout"
+class="p-button-danger"
+id="logOut"
+[routerLink]="['/products']"
+(click)="onLogout()"
+></button>
+
+    </div>
+  </ng-template>
 </p-menubar>
-

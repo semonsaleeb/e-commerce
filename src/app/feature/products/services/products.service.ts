@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../model/product';
 import { map, Observable } from 'rxjs';
+import { Category } from '../../../model/category';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +39,9 @@ export class ProductsService {
     return this.http.post<Product>(this.basicUrl, product);
   }
 
-  // findProductCategories() {
-  //   return this.http.get(this.basicUrl)
-  //     .pipe(
-  //       map(res => res["categories"])
-  //     );
-  // }
+  //'https://fakestoreapi.com/products/categories'
 
+  getAllCategories() {
+    return this.http.get<Category[]>('https://fakestoreapi.com/products/categories')
+  }
 }
