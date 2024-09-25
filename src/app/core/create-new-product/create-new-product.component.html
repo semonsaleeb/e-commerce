@@ -20,15 +20,15 @@
       </div>
       
 
-      <div class="flex flex-column gap-2">
-        <label for="category" class="label">Category:</label>
-        <input
-          pInputText
-          class="p-inputtext p-component"
-          id="category"
-          formControlName="category"
-          aria-describedby="category-help"
-        />
+     
+        <div class="flex flex-column gap-2">
+          <label for="category" class="label">Category:</label>
+          <select formControlName="category" class="custom-select">
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
       
         <p-message *ngIf="productForm.get('category')?.errors?.['required'] && productForm.get('category')?.touched" severity="error" text="category is required."></p-message>
 
@@ -36,13 +36,12 @@
       
 
       <div class="flex flex-column gap-2">
-        <label for="float-input" class="label">Description:</label>
+        <label for="Description" class="label">Description:</label>
         <textarea
           id="Description"
           class="p-inputtextarea p-component"
           formControlName="description"
-          rows="3"
-          cols="30"
+          
           pInputTextarea
         ></textarea>
         <p-message *ngIf="productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched" severity="error" text="description is required."></p-message>
@@ -65,6 +64,5 @@
       <div class="flex flex-column gap-2">
         <button pButton label="Add Product" [disabled]="!productForm.valid" type="submit" class="p-button-primary"></button>
         </div>
-    </div>
   </form>
 </p-card>  

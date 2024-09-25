@@ -10,38 +10,37 @@ import { Category } from '../../../model/category';
 })
 export class ProductsService {
 
-  basicUrl = environment.basicUrl+'products/'
+  productsUrl = environment.basicUrl+'products/'
 
 
   private http =inject(HttpClient) 
   
   
   getAllProducts() {
-    return this.http.get<Product[]>(this.basicUrl)
+    return this.http.get<Product[]>(this.productsUrl)
   }
 
   getProductById(productId: number) {
-    return this.http.get<Product>(`${this.basicUrl}${productId}`);
+    return this.http.get<Product>(`${this.productsUrl}${productId}`);
   }
 
   deleteProduct(product_id:number){
      console.log("services delete");
-     return this.http.delete(this.basicUrl+ product_id)
+     return this.http.delete(this.productsUrl+ product_id)
     
   }
 
   editProduct(product_id: number, updatedProduct: any) {
     console.log("Service edit called");
-    return this.http.put(this.basicUrl + product_id, updatedProduct);
+    return this.http.put(this.productsUrl + product_id, updatedProduct);
   }
 
   addNewProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.basicUrl, product);
+    return this.http.post<Product>(this.productsUrl, product);
   }
 
-  //'https://fakestoreapi.com/products/categories'
 
   getAllCategories() {
-    return this.http.get<Category[]>('https://fakestoreapi.com/products/categories')
+    return this.http.get<Category[]>(this.productsUrl+'/categories')
   }
 }

@@ -15,7 +15,7 @@ import { Category } from '../../../model/category';
 import { Product } from '../../../model/product';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { NavbarComponent } from "../../../shared/navbar/navbar.component";
+import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-product-details',
@@ -30,7 +30,7 @@ import { NavbarComponent } from "../../../shared/navbar/navbar.component";
     ReactiveFormsModule,
     DropdownModule,
     CommonModule,
-    NavbarComponent
+    NavbarComponent,
   ],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
@@ -41,8 +41,7 @@ export class ProductDetailsComponent implements OnInit {
   public router = inject(Router);
   private fb = inject(FormBuilder);
 
-  categories$: Observable<Category[]> = of([]); // Initialize with an empty array
-
+  categories: Category[] | undefined;
   form: FormGroup;
 
   @Input()
@@ -69,22 +68,16 @@ export class ProductDetailsComponent implements OnInit {
             title: res.title,
             price: res.price,
             Description: res.description,
+            Category:res.category,
           });
         });
       }
     });
 
-    this.categories$ = this.productService.getAllCategories().pipe(
-      map(categories => categories.map(category => ({
-        id: category.id,
-        name: category.name
-        
-      }))),
-      catchError(error => {
-        console.error('Error fetching categories:', error);
-        return of([]);
-      })
-    );
+    this.productService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+      console.log('Categories:', this.categories);
+    });
   }
 
   submitForm() {

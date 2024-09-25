@@ -1,52 +1,64 @@
 <app-navbar></app-navbar>
 <p-card class="editForm">
-@if (product) {
-    <form [formGroup]="form" (ngSubmit)="submitForm()" class="form-container">
-<div class="form-container ">
-    <div class="flex flex-column gap-2 ">
-        <h4 id="heading">Edit Element:<span> ({{title.value}})</span> </h4>
-</div>
+  @if (product) {
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="form-container">
+    <div class="form-container">
+      <div class="flex flex-column gap-2">
+        <h4 id="heading">
+          Edit Element:<span> ({{ title.value }})</span>
+        </h4>
+      </div>
 
-<div class="flex flex-column gap-2 ">
-    <label for="username" class="label">title    :</label>
-    <input  pInputText class="p-inputtext p-component"  id="title" formControlName="title" aria-describedby="username-help"  #title   />
-</div>
+      <div class="flex flex-column gap-2">
+        <label for="username" class="label">title :</label>
+        <input
+          pInputText
+          class="p-inputtext p-component"
+          id="title"
+          formControlName="title"
+          aria-describedby="username-help"
+          #title
+        />
+      </div>
 
-<div class="flex flex-column gap-2">
-    <label for="username" class="label">Category  :</label>
-    <input  pInputText class="p-inputtext p-component"  id="Category" formControlName="Category"  aria-describedby="username-help"  />
-</div>
+      <div class="flex flex-column gap-2">
+        <label for="category" class="label">Category:</label>
+        <select formControlName="Category" class="custom-select">
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
 
-<!-- <div class="flex flex-column gap-2">
-    <label for="category" class="label">Category:</label>
-    <p-dropdown 
-      [options]="categories" 
-      formControlName="category" 
-      optionLabel="name" 
-      optionValue="id"
-      placeholder="Select a Category" 
-      id="category"
-      aria-describedby="category-help">
-    </p-dropdown>
-  </div> -->
+      <div class="flex flex-column gap-2">
+        <label for="float-input" class="label">Description:</label>
+        <textarea
+          id="Description"
+          class="p-inputtextarea p-component"
+          formControlName="Description"
+          rows="3"
+          cols="30"
+          pInputTextarea
+        ></textarea>
+      </div>
 
-<div class="flex flex-column gap-2">
-    <label for="float-input" class="label">Description:</label>
-    <textarea id="Description" class="p-inputtextarea p-component" formControlName="Description" rows="3" cols="30" pInputTextarea ></textarea>
-</div>
+      <div class="flex flex-column gap-2">
+        <label for="float-input" class="label">price :</label>
+        <p-inputNumber
+          inputId="prise-us"
+          id="price"
+          class="p-component"
+          formControlName="price"
+          mode="currency"
+          currency="USD"
+          locale="en-US"
+        />
+      </div>
 
-<div class="flex flex-column gap-2">
-    <label for="float-input" class="label">price   :</label>
-<p-inputNumber  inputId="prise-us" id="price" class=" p-component" formControlName="price"  mode="currency" currency="USD" locale="en-US"  /> 
-</div>
-
-<button class="p-button p-component mt-3">submit</button>
-
-
-</div>
-</form>
-}
-@else if (!product) {
-    <h1>loading</h1>
-}
+      <button class="p-button p-component mt-3">submit</button>
+    </div>
+  </form>
+  } @else if (!product) {
+  <h1>loading</h1>
+  }
 </p-card>

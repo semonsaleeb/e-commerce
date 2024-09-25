@@ -32,12 +32,16 @@
   
   .p-inputtext,
   .p-inputtextarea {
-    width: 100%;
+    width: 25rem;
     padding: 0.75rem;
     border-radius: 4px;
     border: 1px solid #ddd;
   }
-  
+  .p-inputtextarea {
+    margin-left: 2.5rem;
+  }
+  .label{
+margin-left: 0rem;  }
   #price{
     box-shadow: none;
       border: none;
@@ -53,3 +57,43 @@
     color: red;
   }
   
+  
+/* Styling the container */
+.flex.flex-column {
+  margin: 10px;
+}
+
+/* Styling the label */
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Styling the select dropdown */
+.custom-select {
+  width: 25rem;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: border-color 0.3s ease;
+}
+
+/* Change border color on focus */
+.custom-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Styling options (if needed) */
+.custom-select option {
+  padding: 8px;
+}
+
+/* Styling for disabled state */
+.custom-select:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}

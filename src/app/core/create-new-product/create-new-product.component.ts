@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Product } from '../../model/product';
 import { MessageModule } from 'primeng/message';
 import { CommonModule } from '@angular/common';
+import { Category } from '../../model/category';
 
 @Component({
   selector: 'app-create-new-product',
@@ -30,7 +31,15 @@ export class CreateNewProductComponent {
     description: ['', [Validators.required, Validators.maxLength(100)]],
   });
   
+  categories: Category[] | undefined;
 
+  ngOnInit() {
+    this.productService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+      console.log('Categories:', this.categories);
+    });
+    
+  }
   onSubmit() {
     if (this.productForm.valid) {
       const newProduct: Product = {
