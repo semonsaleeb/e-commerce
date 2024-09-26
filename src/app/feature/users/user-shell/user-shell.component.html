@@ -1,31 +1,56 @@
 <div class="card">
-    <p-table 
-        [value]="users" 
-        styleClass="p-datatable-gridlines" 
-        [tableStyle]="{ 'min-width': '50rem' }">
-        
-        <!-- Header Template -->
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Code</th>
-                <th>User Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Name</th>
-                <th>Address</th>
-            </tr>
-        </ng-template>
+  <p-button
+    class="addNew"
+    label="Add new user"
+    [outlined]="true"
+    severity="success"
+    [routerLink]="['/addNeUser']"
+    routerLinkActive="router-link-active"
+  />
 
-        <!-- Body Template -->
-        <ng-template pTemplate="body" let-user>
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{user.username}}</td>
-                <td>{{ user.email }}</td>
-                <td>{{user.password}}</td>
-                <td>{{ user.name.firstname +'  ' + user.name.lastname}}</td>
-                <td>{{ user.address.city }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+  <p-table
+    [value]="users"
+    styleClass="p-datatable-gridlines"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <!-- Header Template -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Code</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <!-- Body Template -->
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.name.firstname + "  " + user.name.lastname }}</td>
+        <td>{{ user.address.city + "  " + user.address.street }}</td>
+        <td>
+          <div class="card flex justify-content-center">
+            <p-button
+              label="Delete"
+              icon="pi pi-trash "
+              severity="danger"
+              (click)="OnDelete(user.id)"
+            />&nbsp;
+            <p-button
+              label="Edit"
+              icon="pi pi-pencil"
+              [routerLink]="['/editUser', user.id]"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

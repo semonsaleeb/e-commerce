@@ -5,6 +5,9 @@ import { CreateNewProductComponent } from './core/create-new-product/create-new-
 import { LoginComponent } from './shared/login/login.component';
 import { UserShellComponent } from './feature/users/user-shell/user-shell.component';
 import { AuthGuard } from './shared/login/service/auth.guard';
+import { Component } from '@angular/core';
+import { NewUserComponent } from './feature/users/new-user/new-user.component';
+import { EditUserComponent } from './feature/users/edit-user/edit-user.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -28,4 +31,13 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     providers: [AuthGuard],
   },
+  {
+    path: 'addNeUser',
+    component: NewUserComponent,
+  },
+  {
+    path: 'editUser/:id',
+    component: EditUserComponent
+  }
+  
 ];
