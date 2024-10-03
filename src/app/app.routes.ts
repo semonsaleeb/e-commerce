@@ -32,7 +32,7 @@ export const routes: Routes = [
     providers: [AuthGuard],
   },
   {
-    path: 'addNeUser',
+    path: 'addNewUser',
     component: NewUserComponent,
   },
   {

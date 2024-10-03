@@ -1,0 +1,73 @@
+<p-card class="addNewForm">
+  <form
+    [formGroup]="userForm2"
+    class="p-fluid p-formgrid p-grid"
+  >
+   
+      <!-- Name Group -->
+      <div formGroupName="name" class="p-grid">
+        <label for="name"> Name:</label>
+        <br />
+        <div class="p-field p-col-12 p-md-6">
+          <label for="firstname">First Name:</label>
+          <input
+            pInputText
+            id="firstname"
+            formControlName="firstname"
+            type="text"
+          />
+          <p-message
+            *ngIf="userForm2.get('name.firstname')?.errors?.['required'] && userForm2.get('name.firstname')?.touched"
+            severity="error"
+            text="First Name is required."
+          ></p-message>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="lastname">Last Name:</label>
+          <input
+            pInputText
+            id="lastname"
+            formControlName="lastname"
+            type="text"
+          />
+          <p-message
+            *ngIf="userForm2.get('name.lastname')?.errors?.['required'] && userForm2.get('name.lastname')?.touched"
+            severity="error"
+            text="Last Name is required."
+          ></p-message>
+        </div>
+      </div>
+
+      <!-- Address Group -->
+
+      <div formGroupName="address" class="p-grid">
+        <label for="address">Address:</label>
+        <br />
+        <div class="p-field p-col-12 p-md-6">
+          <label for="city">City:</label>
+          <input pInputText id="city" formControlName="city" type="text" />
+          <p-message
+            *ngIf="userForm2.get('address.city')?.errors?.['required'] && userForm2.get('address.city')?.touched"
+            severity="error"
+            text="City is required."
+          ></p-message>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+          <label for="street">Street:</label>
+          <input pInputText id="street" formControlName="street" type="text" />
+          <p-message
+            *ngIf="userForm2.get('address.street')?.errors?.['required'] && userForm2.get('address.street')?.touched"
+            severity="error"
+            text="Street is required."
+          ></p-message>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="p-col-12">
+        <p-button label="Submit" type="submit" icon="pi pi-check"></p-button>
+      </div>
+  </form>
+</p-card>

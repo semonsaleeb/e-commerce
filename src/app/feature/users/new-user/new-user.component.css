@@ -1,8 +1,24 @@
-form {
-    text-align: center;
-  }
-  
-  input {
-    margin: 1.5rem;
-  }
-  
+.addNewForm {
+  max-width: 500px; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30%;
+
+}
+
+.form-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+margin-top: 0px;
+padding-top: 0px;
+}
+
+h1{
+  text-align: center;
+}

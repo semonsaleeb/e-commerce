@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../../model/user';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +44,17 @@ updateUser(userId: number, updatedData: User): Observable<any> {
   addNewUser(User: User): Observable<User> {
     return this.http.post<User>(this.usersUrl, User);
   }
+  
+ 
+    private part1FormData = new BehaviorSubject<any>(null);
+  
+    setPart1FormData(data: any) {
+      this.part1FormData.next(data);
+    }
+  
+    getPart1FormData() {
+      return this.part1FormData.getValue();
+    }
+  }
+  
 
-}
